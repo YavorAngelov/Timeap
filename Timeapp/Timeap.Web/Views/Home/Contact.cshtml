@@ -1,0 +1,32 @@
+﻿@model ContactBindingModel
+@{
+    ViewData["Title"] = "Contact";
+}
+
+<div class="row" style="margin: 20px">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div style="margin-bottom: 20px">
+            <h1 class="text-center text-primary" style="margin-bottom: 20px">@ViewData["Title"]</h1>
+            <h4 class="text-muted text-center">Fill out the form below and a Timeap representative will contact you as soon as possible. For immediate assistance, please call or email our customer support.</h4>
+        </div>
+        <form asp-area="" asp-controller="Home" asp-action="Contact" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            @Html.FormGroupFor(m => m.Email)
+            @Html.FormGroupFor(m => m.Subject)
+            <div class="form-group">
+                <label asp-for="Message"></label>
+                @Html.TextAreaFor(m => m.Message, 6, 8, new { @class = "form-control" })
+                <span asp-validation-for="Message" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col-lg-2 col-lg-offset-5">
+                    <button type="submit" class="btn btn-primary btn-lg btn-huge">Send Email</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

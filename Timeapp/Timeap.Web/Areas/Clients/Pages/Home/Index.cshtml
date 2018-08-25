@@ -1,0 +1,39 @@
+﻿@page "{id}"
+@model IndexModel
+@{
+    ViewData["Title"] = $"{Model.ClientName} page";
+}
+
+<div class="container-fluid">
+    <div class="row" style="margin: 40px">
+        <div class="col-lg-8 col-lg-offset-2">
+            <div style="margin-bottom: 20px">
+                <h1 class="text-center text-primary" style="margin-bottom: 20px">@ViewData["Title"]</h1>
+                <h4 class="text-muted text-center">Latest projects.</h4>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Start</th>
+                        <th scope="col">End</th>
+                        <th scope="col">Team</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var project in Model.ClientProjects)
+                    {
+                        <tr>
+                            <td><a asp-page="/Projects/Details" asp-route-id="@(project.Id)">@project.Title</a></td>
+                            <td>@project.Description</td>
+                            <td>@project.StartDate.ToString("dd/MM/yyyy")</td>
+                            <td>@project.EndDate.ToString("dd/MM/yyyy")</td>
+                            <td>@project.Team.Name</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ProjectConciseViewModel>
+@{
+    ViewData["Title"] = $"{ViewData["DeveloperName"]} page";
+}
+
+<div class="container-fluid">
+    <div class="row" style="margin: 40px">
+        <div class="col-lg-8 col-lg-offset-2">
+            <div style="margin-bottom: 20px">
+                <h1 class="text-center text-primary" style="margin-bottom: 20px">@ViewData["Title"]</h1>
+                <h4 class="text-muted text-center">Latest projects.</h4>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Start</th>
+                        <th scope="col">End</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var project in Model)
+                    {
+                        <tr>
+                            <td>@project.Title</td>
+                            <td>@project.Description</td>
+                            <td>@project.StartDate.ToString("dd/MM/yyyy")</td>
+                            <td>@project.EndDate.ToString("dd/MM/yyyy")</td>
+                            @*<td><a class="btn btn-default" asp-controller="Teams" asp-action="Join" asp-route-data="@(project.TeamId)">@(project.Title) Team</a></td>*@
+                            <td><a class="btn btn-default" asp-controller="Solutions" asp-action="Create" asp-route-id="@(project.TeamId)">Add Solution</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

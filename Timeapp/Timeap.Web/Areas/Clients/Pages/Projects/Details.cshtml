@@ -1,0 +1,33 @@
+﻿@page "{id}"
+@model DetailsModel
+@{
+    ViewData["Title"] = $"{Model.Title} Details";
+}
+
+<div class="row" style="margin: 20px">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div style="margin-bottom: 20px">
+            <h1 class="text-center text-primary" style="margin-bottom: 20px">@ViewData["Title"]</h1>
+            <h4 class="text-muted text-center">Manage your project.</h4>
+        </div>
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            @Html.FormGroupFor(m => m.Title)
+            @Html.FormGroupFor(m => m.Description)
+            @Html.FormGroupFor(m => m.StartDate)
+            @Html.FormGroupFor(m => m.EndDate)
+            <div class="row" style="margin: 20px">
+                <div class="col-md-3 col-md-offset-3">
+                    <input asp-page-handler="Edit" asp-route-id="@Model.Id" type="submit" class="btn btn-warning btn-lg btn-block btn-huge" value="Edit" />
+                </div>
+                <div class="col-md-3">
+                    <input asp-page-handler="Delete" asp-route-id="@Model.Id" type="submit" class="btn btn-danger btn-lg btn-block btn-huge" value="Delete" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

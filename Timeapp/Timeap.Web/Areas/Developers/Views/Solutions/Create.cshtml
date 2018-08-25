@@ -1,0 +1,34 @@
+﻿@model SolutionCreateBindingModel
+@{
+    ViewData["Title"] = "Create Solution";
+}
+
+<div class="row" style="margin: 20px">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div style="margin-bottom: 20px">
+            <h1 class="text-center text-primary" style="margin-bottom: 20px">@ViewData["Title"]</h1>
+            <h4 class="text-muted text-center">Add your solution here.</h4>
+        </div>
+        <form asp-area="Developers" asp-controller="Solutions" asp-action="Create" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            @Html.FormGroupFor(m => m.Title)
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                @Html.TextAreaFor(m => m.Description, 6, 8, new { @class = "form-control" })
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            @Html.FormGroupFor(m => m.StartDate)
+            @Html.FormGroupFor(m => m.EndDate)
+            <div class="row">
+                <div class="col-lg-2 col-lg-offset-5">
+                    <button type="submit" class="btn btn-primary btn-lg btn-huge">Create</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
